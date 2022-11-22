@@ -21,7 +21,22 @@ export const kanban = reactive([
 		name:  "Готово",
 		items: [],
 		uuid:  uuidv4()
-	}
+	},
+	// {
+	// 	name:  "Готово",
+	// 	items: [],
+	// 	uuid:  uuidv4()
+	// },
+	// {
+	// 	name:  "Готово",
+	// 	items: [],
+	// 	uuid:  uuidv4()
+	// },
+	// {
+	// 	name:  "Готово",
+	// 	items: [],
+	// 	uuid:  uuidv4()
+	// }
 ])
 
 
@@ -40,5 +55,12 @@ export const API = {
 	},
 }
 
-API.addItem("Laundry", kanban[0], 1)
-API.addItem("Reading books", kanban[1], 1)
+API.addItem("Сделать курсач", kanban[0], 1)
+API.addItem("Анжуманя", kanban[0], 2)
+API.addItem("Пресс качат", kanban[0], 3)
+API.addItem("Пресс качат", kanban[0], 3)
+API.addItem("Пресс качат", kanban[0], 3)
+API.addItem("Пресс качат", kanban[0], 3)
+API.addItem("Пресс качат", kanban[0], 3)
+API.addItem("Книжки читат", kanban[1], 1)
+API.addItem("В магазин ходит", kanban[1], 1)

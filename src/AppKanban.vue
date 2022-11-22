@@ -5,14 +5,14 @@ import { kanban } from './store.js'
 
 
 <template>
-  <div class="wrapper">
+  <main class="wrapper">
     <div class="board">
       <Column
         v-for="column in kanban"
         :column="column"
         :key="column.uuid" />
     </div>
-  </div>
+  </main>
 
     <!-- <p>Columns</p>
     <ul v-for="column in kanban">

@@ -1,4 +1,5 @@
 <script setup>
+import ColumnItem from './ColumnItem.vue'
 defineProps({
   column: {
     type: Object,
@@ -10,32 +11,51 @@ defineProps({
 <template>
   <!-- <div class="wrapper"> -->
     <div class="column">
-      <h2 class="name">{{ column.name }} ({{ column.items.length }})</h2>
+      <h2 class="column-header">{{ column.name }} ({{ column.items.length }})</h2>
+
+      <ul class="items">
+        <ColumnItem
+          v-for="item in column.items"
+          :item="item"
+          :key="item.uuid" />
+      </ul>
     </div>
   <!-- </div> -->
 </template>
 
 
 <style scoped>
-  .wrapper {
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-background-soft);
-    border: 1px solid  var(--color-border);
-    border-radius: 0.25rem;
-  }
-
   .column {
 /*    width: 100%;*/
     height: 100%;
 
     display: flex;
+    flex-direction: column;
     background-color: var(--color-background-soft);
     border: 1px solid  var(--color-border);
     border-radius: 0.25rem;
   }
 
-  .name {
-    color: var(--color-text);
+  .column-header {
+    background-color: var(--color-background-mute);
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+
+  .items {
+    list-style: none;
+    padding: 1rem;
+    display: grid;
+    align-items: center;
+    grid-auto-flow: row;
+    grid-auto-rows: 10rem;
+    gap: 1rem;
+
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 1rem;*/
+
+/*    max-height: 20rem;*/
+    overflow: scroll;
   }
 </style>
