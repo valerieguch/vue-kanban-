@@ -1,0 +1,12 @@
+@import './reset.css';
+@import './kanban_base.css';
+
+#app {
+    max-width: 1280px;
+    padding: 2rem;
+    margin: 0 auto;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: stretch;
+}
