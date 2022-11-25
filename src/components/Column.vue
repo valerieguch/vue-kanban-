@@ -57,6 +57,6 @@ defineProps({
 /*    gap: 1rem;*/
 
 /*    max-height: 20rem;*/
-    overflow: scroll;
+/*    overflow: scroll;*/
   }
 </style>

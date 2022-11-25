@@ -130,6 +130,10 @@ function moveLeft() {
     padding-bottom: 2rem;
   }
 
+  .text-muted {
+    opacity: 0.6;
+  }
+
   .item-buttons {
     display: flex;
     justify-content: space-between;

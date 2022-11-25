@@ -1,7 +1,18 @@
 <script setup>
- import IconEcosystem from './components/icons/IconEcosystem.vue';
+import IconEcosystem from './components/icons/IconEcosystem.vue';
 import Column from './components/Column.vue'
+import { ref } from 'vue'
 import { kanban, archived } from './store.js'
+
+const preferDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+if (preferDarkTheme) document.querySelector('body').classList.add('dark');
+let isDarkTheme = ref(preferDarkTheme)
+
+function switchTheme() {
+  isDarkTheme = !isDarkTheme
+  document.querySelector('body').classList.toggle('dark');
+}
+
 </script>
 
 
@@ -11,10 +22,16 @@ import { kanban, archived } from './store.js'
       <a href="#" class="header-logo">
         <IconEcosystem />
       </a>
+
       <h1 style="font-size: 1.5em;">Канбан</h1>
-      <div class="theme-switcher"><i>theme</i></div>
+
+      <button @click="switchTheme">Switch theme</button>
+      <!-- <div class="theme-switcher">
+        <i>theme</i>
+      </div> -->
     </div>
   </header>
+
   <main class="wrapper">
 
     <div class="board">
@@ -78,6 +95,6 @@ import { kanban, archived } from './store.js'
     gap: 2rem;
 /*    grid-template-columns: unset;*/
 /*    grid-template-rows: unset;*/
-    overflow: scroll;
+/*    overflow: scroll;*/
   }
 </style>
