@@ -33,10 +33,11 @@ import { kanban } from './store.js'
 
   /* Scrollable grid */
   .board {
+    padding: 2rem;
     display: grid;
     align-items: center;
     grid-auto-flow: column;
-    grid-auto-columns: 25rem;
+    grid-auto-columns: 24rem;
     gap: 2rem;
 /*    grid-template-columns: unset;*/
 /*    grid-template-rows: unset;*/

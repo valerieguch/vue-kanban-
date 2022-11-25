@@ -48,7 +48,7 @@ defineProps({
     display: grid;
     align-items: center;
     grid-auto-flow: row;
-    grid-auto-rows: 10rem;
+    grid-auto-rows: minmax(10rem, auto);
     gap: 1rem;
 
 /*    display: flex;*/

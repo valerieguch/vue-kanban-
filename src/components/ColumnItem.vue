@@ -1,4 +1,7 @@
 <script setup>
+import IconLeftArrow from "./icons/IconLeftArrow.vue"
+import IconEdit from './icons/IconEdit.vue'
+import IconRightArrow from './icons/IconRightArrow.vue'
 import { computed } from 'vue'
 const props = defineProps({
   item: {
@@ -23,6 +26,27 @@ const badgeColorClass = computed(() => {
       <div class="item-header">
         <h3>{{ item.name }}</h3>
         <div class="priority-badge" :class="badgeColorClass">{{ item.priority }}</div>
+      </div>
+
+      <div class="item-body">
+        <p v-if="item.desc" class="item-desc">{{ item.desc }}</p>
+        <i v-else class="item-desc text-muted" style="display: block" >без описания</i>
+
+        <i style="padding-bottom: 1rem; display: block;">{{ item.date }}</i>
+
+        <div class="item-buttons">
+          <button>
+            <i class="icon"><IconLeftArrow /></i>
+          </button>
+
+          <button>
+            <i class="icon"><IconEdit /></i>
+          </button>
+
+          <button>
+            <i class="icon"><IconRightArrow /></i>
+          </button>
+        </div>
       </div>
     </li>
   <!-- </div> -->
@@ -68,5 +92,48 @@ const badgeColorClass = computed(() => {
 
   .background-red {
     background-color: #dc3545;
+  }
+
+  .item-body {
+    flex: 1 1 auto;
+
+    padding: 1rem;
+  }
+
+  .item-desc {
+    padding-bottom: 2rem;
+  }
+
+  .item-buttons {
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .item-buttons > button {
+    width: 2.3rem;
+    height: 2.3rem;
+    padding: 0.4rem;
+    background-color: var(--color-background-mute);
+    cursor: pointer;
+
+    border: 1px solid  var(--color-border);
+    border-radius: 0.25rem;
+
+    display: flex;
+    place-items: center;
+    place-content: center;
+  }
+
+  .icon {
+    display: flex;
+    place-items: center;
+    place-content: center;
+/*    width: 2rem;*/
+/*    height: 2rem;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+
+    color: var(--color-text);
   }
 </style>
