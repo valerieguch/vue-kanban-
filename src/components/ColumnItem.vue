@@ -2,8 +2,9 @@
 import IconLeftArrow from "./icons/IconLeftArrow.vue"
 import IconEdit from './icons/IconEdit.vue'
 import IconRightArrow from './icons/IconRightArrow.vue'
+import IconCheck from './icons/IconCheck.vue'
 import { computed } from 'vue'
-import { API } from '../store.js'
+import { API, kanban } from '../store.js'
 
 const props = defineProps({
   item: {
@@ -21,9 +22,22 @@ const badgeColorClass = computed(() => {
     return "background-blue"
 })
 
+const isButtonLeftDisabled = computed(() => {
+  return (props.item.column.index === 0);
+})
+
+const isLastColumn = computed(() => {
+  return (props.item.column.index === kanban.length - 1)
+})
+
 function moveRight() {
   API.moveItem(props.item, props.item.column, props.item.column.index + 1)
 }
+
+function moveLeft() {
+  API.moveItem(props.item, props.item.column, props.item.column.index - 1)
+}
+
 </script>
 
 <template>
@@ -41,7 +55,9 @@ function moveRight() {
         <i style="padding-bottom: 1rem; display: block;">{{ item.createdAt }}</i>
 
         <div class="item-buttons">
-          <button disabled>
+          <button
+            @click="moveLeft"
+            :disabled="isButtonLeftDisabled">
             <i class="icon"><IconLeftArrow /></i>
           </button>
 
@@ -50,7 +66,10 @@ function moveRight() {
           </button>
 
           <button @click="moveRight">
-            <i class="icon"><IconRightArrow /></i>
+            <i class="icon">
+              <IconCheck v-if="isLastColumn" />
+              <IconRightArrow v-else />
+            </i>
           </button>
         </div>
       </div>

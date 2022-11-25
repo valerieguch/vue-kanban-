@@ -45,6 +45,9 @@ export const kanban = reactive([
 	// }
 ])
 
+// Archived items
+export const archived = reactive([])
+
 // TODO it's currently assumed that columns can't be moved, created or deleted
 
 export const API = {
@@ -65,20 +68,24 @@ export const API = {
 		column.items.push(newItem)
 	},
 
-	// Move from one column to another. If `toColumn` is null, then remove item
+	// Move from one column to another. If `toColumn` is null or greater than
+	// `kanban.length - 1`, then remove item
 	moveItem(item, fromColumn, toColumn) {
 		if (typeof(fromColumn) === 'number')
 			fromColumn = kanban[fromColumn]
 		if (typeof(toColumn) === 'number')
 			toColumn = kanban[toColumn]
 
-		console.log(`moving from ${fromColumn.name} to ${toColumn.name}`)
-
-		// fromColumn.items.splice(item.index, 1)
 		fromColumn.items.splice(fromColumn.items.indexOf(item), 1)
-		toColumn.items.push(item)
-		item.column = toColumn
-		// item.index = toColumn.length - 1
+		if (toColumn !== undefined && toColumn !== null) {
+			toColumn.items.push(item)
+			item.column = toColumn
+		}
+		else {
+			archived.push(item)
+			item.column = null
+			console.log(archived)
+		}
 	},
 }
 
@@ -93,3 +100,4 @@ API.addItem("Пресс качат четыре", "Добавим описани
 API.addItem("Пресс качат пять", "Добавим описание рас два три четыре", kanban[0], 3)
 API.addItem("Книжки читат", "Добавим описание рас два три четыре", kanban[1], 1)
 API.addItem("В магазин ходит", "Добавим описание рас два три четыре", kanban[1], 1)
+API.addItem("Я сделяль", "Добавим описание рас два три четыре", kanban[2], 3)

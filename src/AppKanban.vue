@@ -1,6 +1,6 @@
 <script setup>
 import Column from './components/Column.vue'
-import { kanban } from './store.js'
+import { kanban, archived } from './store.js'
 </script>
 
 
@@ -12,6 +12,11 @@ import { kanban } from './store.js'
         :column="column"
         :key="column.uuid" />
     </div>
+
+    <h3>Archived:</h3>
+    <ul v-for="item in archived" :key="item.uuid">
+      <li>{{ item.name }}</li>
+    </ul>
   </main>
 
     <!-- <p>Columns</p>
@@ -28,6 +33,7 @@ import { kanban } from './store.js'
   .wrapper {
     margin: 0 auto;
     display: flex;
+    flex-direction: column;
     align-items: stretch;
   }
 
