@@ -6,20 +6,26 @@ function uuidv4() {
 	);
 }
 
+// TODO storing indices is... weird? But I haven't found another easy way to get
+// element index without O(n).
+
 export const kanban = reactive([
 	{
 		name:  "План",
 		items: [],
+		index: 0,
 		uuid:  uuidv4()
 	},
 	{
 		name:  "В работе",
 		items: [],
+		index: 1,
 		uuid:  uuidv4()
 	},
 	{
 		name:  "Готово",
 		items: [],
+		index: 2,
 		uuid:  uuidv4()
 	},
 	// {
@@ -39,21 +45,40 @@ export const kanban = reactive([
 	// }
 ])
 
+// TODO it's currently assumed that columns can't be moved, created or deleted
 
 export const API = {
 	// name, desc: String, column: Object
 	addItem(name, desc, column, priority=1) {
 		// TODO is there a more elegant way to do this in JS?
 		const newItem = {
-			name     : name,
-			desc     : desc,
-			column   : column, // TODO do I really need to know the column?
-			priority : priority,
-			date     : new Date().toLocaleString(),
-			uuid     : uuidv4()
+			name      : name,
+			desc      : desc,
+			column    : column, // TODO do I really need to know the column?
+			// TODO store next column index or object reference?
+			priority  : priority,
+			createdAt : new Date().toLocaleString(),
+			// index     : column.items.length,
+			uuid      : uuidv4()
 		}
 
 		column.items.push(newItem)
+	},
+
+	// Move from one column to another. If `toColumn` is null, then remove item
+	moveItem(item, fromColumn, toColumn) {
+		if (typeof(fromColumn) === 'number')
+			fromColumn = kanban[fromColumn]
+		if (typeof(toColumn) === 'number')
+			toColumn = kanban[toColumn]
+
+		console.log(`moving from ${fromColumn.name} to ${toColumn.name}`)
+
+		// fromColumn.items.splice(item.index, 1)
+		fromColumn.items.splice(fromColumn.items.indexOf(item), 1)
+		toColumn.items.push(item)
+		item.column = toColumn
+		// item.index = toColumn.length - 1
 	},
 }
 

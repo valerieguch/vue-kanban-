@@ -3,6 +3,8 @@ import IconLeftArrow from "./icons/IconLeftArrow.vue"
 import IconEdit from './icons/IconEdit.vue'
 import IconRightArrow from './icons/IconRightArrow.vue'
 import { computed } from 'vue'
+import { API } from '../store.js'
+
 const props = defineProps({
   item: {
     type: Object,
@@ -18,6 +20,10 @@ const badgeColorClass = computed(() => {
   else
     return "background-blue"
 })
+
+function moveRight() {
+  API.moveItem(props.item, props.item.column, props.item.column.index + 1)
+}
 </script>
 
 <template>
@@ -32,10 +38,10 @@ const badgeColorClass = computed(() => {
         <p v-if="item.desc" class="item-desc">{{ item.desc }}</p>
         <i v-else class="item-desc text-muted" style="display: block" >без описания</i>
 
-        <i style="padding-bottom: 1rem; display: block;">{{ item.date }}</i>
+        <i style="padding-bottom: 1rem; display: block;">{{ item.createdAt }}</i>
 
         <div class="item-buttons">
-          <button>
+          <button disabled>
             <i class="icon"><IconLeftArrow /></i>
           </button>
 
@@ -43,7 +49,7 @@ const badgeColorClass = computed(() => {
             <i class="icon"><IconEdit /></i>
           </button>
 
-          <button>
+          <button @click="moveRight">
             <i class="icon"><IconRightArrow /></i>
           </button>
         </div>
@@ -123,6 +129,10 @@ const badgeColorClass = computed(() => {
     display: flex;
     place-items: center;
     place-content: center;
+  }
+  .item-buttons > button:disabled {
+    background-color: var(--color-background-soft);
+    cursor: default;
   }
 
   .icon {
