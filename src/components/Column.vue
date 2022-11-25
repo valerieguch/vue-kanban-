@@ -10,6 +10,7 @@ defineProps({
 
 <template>
   <!-- <div class="wrapper"> -->
+    <!-- TODO make column constant height, items should be scrollable -->
     <div class="column">
       <h2 class="column-header">{{ column.name }} ({{ column.items.length }})</h2>
 

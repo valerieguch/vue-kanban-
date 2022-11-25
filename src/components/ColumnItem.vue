@@ -2,7 +2,8 @@
 import IconLeftArrow from "./icons/IconLeftArrow.vue"
 import IconEdit from './icons/IconEdit.vue'
 import IconRightArrow from './icons/IconRightArrow.vue'
-import IconCheck from './icons/IconCheck.vue'
+// import IconCheck from './icons/IconCheck.vue'
+import IconArchive from './icons/IconArchive.vue'
 import { computed } from 'vue'
 import { API, kanban } from '../store.js'
 
@@ -67,7 +68,7 @@ function moveLeft() {
 
           <button @click="moveRight">
             <i class="icon">
-              <IconCheck v-if="isLastColumn" />
+              <IconArchive v-if="isLastColumn" />
               <IconRightArrow v-else />
             </i>
           </button>
@@ -130,7 +131,6 @@ function moveLeft() {
   }
 
   .item-buttons {
-
     display: flex;
     justify-content: space-between;
   }
