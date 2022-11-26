@@ -80,93 +80,93 @@ function moveLeft() {
 
 
 <style scoped>
-  .item {
-    min-height: 10rem;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-background-soft);
-    border: 1px solid  var(--color-border);
-    border-radius: 0.25rem;
-  }
+.item {
+  min-height: 10rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-soft);
+  border: 1px solid  var(--color-border);
+  border-radius: 0.25rem;
+}
 
-  .item-header {
-    background-color: var(--color-background-mute);
-    padding: 0.5rem 1rem;
+.item-header {
+  background-color: var(--color-background-mute);
+  padding: 0.5rem 1rem;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
 /*    min-height: 20rem;*/
-  }
+}
 
-  .priority-badge {
-    border-radius: 50rem;
-    padding: 0.25rem 0.55rem;
-    line-height: 1;
-    font-weight: 800;
-    color: var(--vt-c-white-soft);
-  }
+.priority-badge {
+  border-radius: 50rem;
+  padding: 0.25rem 0.55rem;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--vt-c-white-soft);
+}
 
-  .background-blue {
-    background-color: #0d6efd;
-  }
+.background-blue {
+  background-color: #0d6efd;
+}
 
-  .background-orange {
-    background-color: #fd7e14;
-  }
+.background-orange {
+  background-color: #fd7e14;
+}
 
-  .background-red {
-    background-color: #dc3545;
-  }
+.background-red {
+  background-color: #dc3545;
+}
 
-  .item-body {
-    flex: 1 1 auto;
+.item-body {
+  flex: 1 1 auto;
 
-    padding: 1rem;
-  }
+  padding: 1rem;
+}
 
-  .item-desc {
-    padding-bottom: 2rem;
-  }
+.item-desc {
+  padding-bottom: 2rem;
+}
 
-  .text-muted {
-    opacity: 0.6;
-  }
+.text-muted {
+  opacity: 0.6;
+}
 
-  .item-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
+.item-buttons {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .item-buttons > button {
-    width: 2.3rem;
-    height: 2.3rem;
-    padding: 0.4rem;
-    background-color: var(--color-background-mute);
-    cursor: pointer;
+.item-buttons > button {
+  width: 2.3rem;
+  height: 2.3rem;
+  padding: 0.4rem;
+  background-color: var(--color-background-mute);
+  cursor: pointer;
 
-    border: 1px solid  var(--color-border);
-    border-radius: 0.25rem;
+  border: 1px solid  var(--color-border);
+  border-radius: 0.25rem;
 
-    display: flex;
-    place-items: center;
-    place-content: center;
-  }
-  .item-buttons > button:disabled {
-    background-color: var(--color-background-soft);
-    cursor: default;
-  }
+  display: flex;
+  place-items: center;
+  place-content: center;
+}
+.item-buttons > button:disabled {
+  background-color: var(--color-background-soft);
+  cursor: default;
+}
 
-  .icon {
-    display: flex;
-    place-items: center;
-    place-content: center;
+.icon {
+  display: flex;
+  place-items: center;
+  place-content: center;
 /*    width: 2rem;*/
 /*    height: 2rem;*/
 /*    width: 100%;*/
 /*    height: 100%;*/
 
-    color: var(--color-text);
-  }
+  color: var(--color-text);
+}
 </style>

@@ -58,43 +58,44 @@ function switchTheme() {
 
 
 <style scoped>
-  .header {
-    background-color: var(--color-background-mute);
-  }
+.header {
+  background-color: var(--color-background-mute);
+}
 
-  .header-wrapper {
-    min-height: 3rem;
-    max-width: 80rem;
-    margin: 0 auto;
+.header-wrapper {
+  min-height: 3rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 2rem;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .header-logo {
-    color: var(--color-text);
-    padding: 0.2rem;
-    scale: 150%;
-  }
+.header-logo {
+  color: var(--color-text);
+  padding: 0.2rem;
+  scale: 150%;
+}
 
-  .wrapper {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
 
-  /* TODO make scorllable */
-  .board {
-    padding: 2rem;
-    display: grid;
-    align-items: center;
-    grid-auto-flow: column;
-    grid-auto-columns: 24rem;
-    gap: 2rem;
+/* TODO make scorllable */
+.board {
+  padding: 2rem;
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  grid-auto-columns: 24rem;
+  gap: 2rem;
 /*    grid-template-columns: unset;*/
 /*    grid-template-rows: unset;*/
 /*    overflow: scroll;*/
-  }
+}
 </style>
