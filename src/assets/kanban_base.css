@@ -50,7 +50,6 @@
   }
 }*/
 
-
 body {
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
@@ -65,6 +64,7 @@ body {
   --section-gap: 160px;
 }
 
+/* TODO fix white flashing before page loads if preferred theme is dark */
 body.dark {
   --color-background: var(--vt-c-black);
   --color-background-soft: var(--vt-c-black-soft);
