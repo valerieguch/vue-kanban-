@@ -25,10 +25,17 @@ function switchTheme() {
 
       <h1 style="font-size: 1.5em;">Канбан</h1>
 
-      <button @click="switchTheme">Switch theme</button>
-      <!-- <div class="theme-switcher">
-        <i>theme</i>
-      </div> -->
+      <div class="theme-switch-wrapper">
+        <label for="switch">Темная тема</label>
+        <input
+          type="checkbox"
+          :checked="preferDarkTheme"
+          @change="switchTheme"
+          id="switch"
+          class="theme-switch">
+      </div>
+
+      <!-- <button @click="switchTheme">Switch theme</button> -->
     </div>
   </header>
 
@@ -97,5 +104,31 @@ function switchTheme() {
 /*    grid-template-columns: unset;*/
 /*    grid-template-rows: unset;*/
 /*    overflow: scroll;*/
+}
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-switch {
+  border-radius: 2em;
+  width: 40px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid var(--color-border);
+  appearance: none;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: 0;
+  background-image: url('./assets/img/switch.svg');
+  transition: background-position .2s ease-in-out;
+}
+
+.theme-switch:checked {
+  background-position: right center;
+  background-image: url('./assets/img/switch-checked.svg');
+  background-color: #776acf;
 }
 </style>
