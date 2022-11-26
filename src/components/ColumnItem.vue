@@ -152,10 +152,17 @@ function moveLeft() {
   display: flex;
   place-items: center;
   place-content: center;
+
+  transition: filter .2s ease-in-out;
 }
+
 .item-buttons > button:disabled {
   background-color: var(--color-background-soft);
   cursor: default;
+}
+
+.item-buttons > button:enabled:hover {
+  filter: brightness(120%);
 }
 
 .icon {

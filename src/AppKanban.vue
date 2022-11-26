@@ -4,6 +4,7 @@ import Column from './components/Column.vue'
 import { ref } from 'vue'
 import { kanban, archived } from './store.js'
 
+// TODO maybe move this to a header component?
 const preferDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 if (preferDarkTheme) document.querySelector('body').classList.add('dark');
 let isDarkTheme = ref(preferDarkTheme)
@@ -40,7 +41,7 @@ function switchTheme() {
   </header>
 
   <main class="wrapper">
-
+    <button class="btn-create-task">Создать задачу</button>
     <div class="board">
       <Column
         v-for="column in kanban"
@@ -54,6 +55,9 @@ function switchTheme() {
     </ul>
   </main>
 
+  <!-- TODO this is a hack to make footer stick to the bottom. Not elegant at all. -->
+  <div class="spacer"></div>
+
     <!-- <p>Columns</p>
     <ul v-for="column in kanban">
       <p>{{ column.name }}:</p>
@@ -61,6 +65,9 @@ function switchTheme() {
         {{ item.name }}, priority: {{ item.priority }}
       </li>
     </ul> -->
+  <footer class="footer">
+    <div class="footer-wrapper">Валерия Гучустян, 191-322</div>
+  </footer>
 </template>
 
 
@@ -91,6 +98,28 @@ function switchTheme() {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+}
+
+.btn-create-task {
+  /* TODO ugly */
+  margin: 3rem 2rem 0rem 2rem;
+  width: 9rem;
+  height: 2.3rem;
+  font-size: 1.1em;
+
+  color: var(--vt-c-white-soft);
+  background-color: var(--color-btn-green);
+  border: none;
+  border-radius: 0.25rem;
+
+  cursor: pointer;
+
+  transition: filter .2s ease-in-out;
+}
+
+.btn-create-task:hover {
+  filter: brightness(150%);
+/*  background-color: var(--color-btn-green);*/
 }
 
 /* TODO make scorllable */
@@ -130,5 +159,23 @@ function switchTheme() {
   background-position: right center;
   background-image: url('./assets/img/switch-checked.svg');
   background-color: #776acf;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.footer {
+  background-color: var(--color-background-mute);
+}
+
+.footer-wrapper {
+  min-height: 3rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  display: flex;
+  align-items: center;
 }
 </style>
