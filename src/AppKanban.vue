@@ -117,14 +117,16 @@ const showModal = ref(false)
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: flex-start;
 }
 
 .btn-create-task {
   /* TODO ugly */
   margin: 3rem 2rem 0rem 2rem;
-  width: 9rem;
+/*  width: 9rem;*/
   height: 2.3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   font-size: 1.1em;
 
   color: var(--vt-c-white-soft);
