@@ -58,10 +58,13 @@ const showModal = ref(false)
         :key="column.uuid" />
     </div>
 
-    <h3>Archived:</h3>
-    <ul v-for="item in archived" :key="item.uuid">
-      <li>{{ item.name }}</li>
-    </ul>
+    <div style="padding-bottom: 1rem;">
+      <h3>Archive:</h3>
+      <i v-if="archived.length === 0">Empty</i>
+      <ul v-else v-for="item in archived" :key="item.uuid">
+        <li>{{ item.name }}</li>
+      </ul>
+    </div>
   </main>
 
   <!-- TODO this is a hack to make footer stick to the bottom. Not elegant at all. -->
