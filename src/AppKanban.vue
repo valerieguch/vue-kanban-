@@ -28,7 +28,7 @@ const showModal = ref(false)
       </a>
 
       <!-- TODO make centered, probably using grid -->
-      <h1 style="font-size: 1.5em;">Канбан</h1>
+      <h1 class="header-app-name">Канбан</h1>
 
       <div class="theme-switch-wrapper">
         <label for="switch">Темная тема</label>
@@ -100,6 +100,14 @@ const showModal = ref(false)
   color: var(--color-text);
   padding: 0.2rem;
   scale: 150%;
+}
+
+.header-app-name {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 1.5em;
 }
 
 .wrapper {
