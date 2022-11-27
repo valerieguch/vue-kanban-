@@ -1,27 +1,27 @@
-<!-- TODO duplicate code in ModalItemEdit, should move modal into a separate
-component -->
 <script setup>
-import { ref, computed} from 'vue'
-import { kanban, API } from '../store.js'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
-    show: Boolean
+    show: Boolean,
+    item: Object
 })
 
-const itemName = ref("")
-const itemDesc = ref("")
-const columnIndex = ref(0)
-const itemPriority = ref(3)
+const itemDesc = ref(props.item.desc)
+const itemPriority = ref(props.item.priority)
+
+function saveItem() {
+  props.item.desc = itemDesc.value
+  props.item.priority = parseInt(itemPriority.value)
+}
+
+function clearFields() {
+  itemDesc.value = props.item.desc
+  itemPriority.value = props.item.priority
+}
 
 const formIncomplete = computed(() => {
-  return (!itemName.value || !itemDesc.value)
+  return (!itemDesc.value)
 })
-
-function createItem() {
-  API.addItem(itemName.value, itemDesc.value, kanban[columnIndex.value], parseInt(itemPriority.value))
-  itemName.value = ""
-  itemDesc.value = ""
-}
 </script>
 
 <template>
@@ -29,26 +29,11 @@ function createItem() {
     <div v-if="show" class="modal-mask">
       <div class="modal-wrapper">
         <div class="modal-container">
-          <h3>Создать задачу</h3>
+          <h3>{{ props.item.name }}</h3>
 
           <div class="modal-body">
             <div class="field-wrapper">
-              <label for="item-name" class="label">Название</label>
-              <!-- TODO remove ugly border when focused -->
-              <input
-                v-model="itemName"
-                id="item-name"
-                type="text"
-                placeholder="Название задачи"
-                class="input">
-            </div>
-
-            <div class="field-wrapper">
               <label for="item-desc" class="label">Описание</label>
-              <!-- <input
-                id="item-desc"
-                type="text"
-                class="input text-area"> -->
               <textarea
                 v-model="itemDesc"
                 id="item-desc"
@@ -57,48 +42,39 @@ function createItem() {
                 placeholder="Описание задачи"></textarea>
             </div>
 
-            <div class="column-and-priority">
-              <div class="field-wrapper">
-                <label for="column-select" class="label">Категория</label>
-                <select v-model="columnIndex" name="column-index" id="column-select">
-                  <option v-for="column in kanban" :value="column.index">{{ column.name }}</option>
-                </select>
-              </div>
+            <fieldset class="priority">
+              <legend class="label">Приоритет</legend>
 
-              <fieldset class="priority">
-                <legend class="label">Приоритет</legend>
-
-                <div class="options">
-                  <div>
-                    <input v-model="itemPriority" type="radio" id="3" name="priority" value="3" checked>
-                    <label for="3" class="priority-label">3</label>
-                  </div>
-
-                  <div>
-                    <input v-model="itemPriority" type="radio" id="2" name="priority" value="2">
-                    <label for="2" class="priority-label">2</label>
-                  </div>
-
-                  <div>
-                    <input v-model="itemPriority" type="radio" id="1" name="priority" value="1">
-                    <label for="1" class="priority-label">1</label>
-                  </div>
+              <div class="options">
+                <div>
+                  <input v-model="itemPriority" type="radio" id="3" name="priority" value="3" checked>
+                  <label for="3" class="priority-label">3</label>
                 </div>
-              </fieldset>
-            </div>
+
+                <div>
+                  <input v-model="itemPriority" type="radio" id="2" name="priority" value="2">
+                  <label for="2" class="priority-label">2</label>
+                </div>
+
+                <div>
+                  <input v-model="itemPriority" type="radio" id="1" name="priority" value="1">
+                  <label for="1" class="priority-label">1</label>
+                </div>
+              </div>
+            </fieldset>
           </div>
 
           <div class="modal-footer">
             <button
               class="btn btn-neutral"
-              @click="$emit('close')"
+              @click="clearFields(); $emit('close')"
             >Отмена</button>
 
             <button
               class="btn"
-              @click="createItem(); $emit('close')"
+              @click="saveItem(); $emit('close')"
               :disabled="formIncomplete"
-            >Создать</button>
+            >Сохранить</button>
           </div>
         </div>
       </div>
@@ -176,13 +152,6 @@ function createItem() {
 
 .text-area {
   resize: none;
-}
-
-.column-and-priority {
-/*  padding: .5rem 0;*/
-
-  display: flex;
-  gap: 2rem;
 }
 
 fieldset.priority {

@@ -1,10 +1,12 @@
 <script setup>
+import ModalItemEdit from './ModalItemEdit.vue'
+
 import IconLeftArrow from "./icons/IconLeftArrow.vue"
 import IconEdit from './icons/IconEdit.vue'
 import IconRightArrow from './icons/IconRightArrow.vue'
-// import IconCheck from './icons/IconCheck.vue'
 import IconArchive from './icons/IconArchive.vue'
-import { computed } from 'vue'
+
+import { ref, computed } from 'vue'
 import { API, kanban } from '../store.js'
 
 const props = defineProps({
@@ -43,9 +45,14 @@ function archive() {
   API.moveItem(props.item, props.item.column, null)
 }
 
+const showModal = ref(false)
 </script>
 
 <template>
+  <Teleport to="body">
+    <ModalItemEdit :show="showModal" :item="props.item" @close="showModal = false" />
+  </Teleport>
+
   <!-- <div class="wrapper"> -->
     <li class="item">
       <div class="item-header">
@@ -67,7 +74,7 @@ function archive() {
             <i class="icon"><IconLeftArrow /></i>
           </button>
 
-          <button title="Edit">
+          <button title="Edit" @click="showModal = true">
             <i class="icon"><IconEdit /></i>
           </button>
 
@@ -171,9 +178,7 @@ function archive() {
   cursor: default;
 }
 
-/* TODO doesn't look good on bright theme :( */
 .item-buttons > button:enabled:hover {
-/*  filter: brightness(120%);*/
   filter: brightness(var(--btn-hover-brightness));
 }
 

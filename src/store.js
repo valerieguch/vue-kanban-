@@ -91,7 +91,7 @@ export const API = {
 
 let lorem = "Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Distinctio, laboriosam non ipsa ut corporis id hic ad amet eius blanditiis tempore ipsam repellat consectetur vero necessitatibus dolor aperiam error. Beatae."
 
-API.addItem("Сделать курсач", "", kanban[0], 1)
+API.addItem("Сделать курсач", "Добавим описание рас два три четыре", kanban[0], 1)
 API.addItem("Анжуманя", lorem, kanban[0], 2)
 // API.addItem("Пресс качат рас", "Добавим описание рас два три четыре", kanban[0], 3)
 // API.addItem("Пресс качат два", "Добавим описание рас два три четыре", kanban[0], 3)
