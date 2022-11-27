@@ -1,9 +1,25 @@
 <script setup>
-import { kanban } from '../store.js'
+import { reactive, ref, computed, onMounted} from 'vue'
+import { kanban, API } from '../store.js'
 
 const props = defineProps({
     show: Boolean
 })
+
+const itemName = ref("")
+const itemDesc = ref("")
+const columnIndex = ref(0)
+const itemPriority = ref(3)
+
+const formIncomplete = computed(() => {
+  return (!itemName.value || !itemDesc.value)
+})
+
+function createItem() {
+  API.addItem(itemName.value, itemDesc.value, kanban[columnIndex.value], parseInt(itemPriority.value))
+  itemName.value = ""
+  itemDesc.value = ""
+}
 </script>
 
 <template>
@@ -18,6 +34,7 @@ const props = defineProps({
               <label for="item-name" class="label">Название</label>
               <!-- TODO remove ugly border when focused -->
               <input
+                v-model="itemName"
                 id="item-name"
                 type="text"
                 placeholder="Название задачи"
@@ -31,6 +48,7 @@ const props = defineProps({
                 type="text"
                 class="input text-area"> -->
               <textarea
+                v-model="itemDesc"
                 id="item-desc"
                 class="input text-area"
                 rows="3"
@@ -40,7 +58,7 @@ const props = defineProps({
             <div class="column-and-priority">
               <div class="field-wrapper">
                 <label for="column-select" class="label">Категория</label>
-                <select name="column-index" id="column-select">
+                <select v-model="columnIndex" name="column-index" id="column-select">
                   <option v-for="column in kanban" :value="column.index">{{ column.name }}</option>
                 </select>
               </div>
@@ -50,17 +68,17 @@ const props = defineProps({
 
                 <div class="options">
                   <div>
-                    <input type="radio" id="3" name="priority" value="3" checked>
+                    <input v-model="itemPriority" type="radio" id="3" name="priority" value="3" checked>
                     <label for="3" class="priority-label">3</label>
                   </div>
 
                   <div>
-                    <input type="radio" id="2" name="priority" value="2">
+                    <input v-model="itemPriority" type="radio" id="2" name="priority" value="2">
                     <label for="2" class="priority-label">2</label>
                   </div>
 
                   <div>
-                    <input type="radio" id="1" name="priority" value="1">
+                    <input v-model="itemPriority" type="radio" id="1" name="priority" value="1">
                     <label for="1" class="priority-label">1</label>
                   </div>
                 </div>
@@ -72,8 +90,9 @@ const props = defineProps({
             default footer
             <button
               class="btn-ok"
-              @click="$emit('close')"
-            >OK</button>
+              @click="createItem(); $emit('close')"
+              :disabled="formIncomplete"
+            >Создать</button>
           </div>
         </div>
       </div>
