@@ -44,7 +44,7 @@ const showModal = ref(false)
     </div>
   </header>
 
-  <main class="wrapper">
+  <main class="main-wrapper">
     <button @click="showModal = true" class="btn-create-task">Создать задачу</button>
 
     <Teleport to="body">
@@ -113,7 +113,7 @@ const showModal = ref(false)
   font-size: 1.5em;
 }
 
-.wrapper {
+.main-wrapper {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
