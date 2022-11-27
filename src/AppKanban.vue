@@ -1,6 +1,8 @@
 <script setup>
 import IconEcosystem from './components/icons/IconEcosystem.vue';
 import Column from './components/Column.vue'
+import ModalItemCreate from './components/ModalItemCreate.vue'
+
 import { ref } from 'vue'
 import { kanban, archived } from './store.js'
 
@@ -14,6 +16,7 @@ function switchTheme() {
   document.querySelector('body').classList.toggle('dark');
 }
 
+const showModal = ref(false)
 </script>
 
 
@@ -24,6 +27,7 @@ function switchTheme() {
         <IconEcosystem />
       </a>
 
+      <!-- TODO make centered, probably using grid -->
       <h1 style="font-size: 1.5em;">Канбан</h1>
 
       <div class="theme-switch-wrapper">
@@ -41,7 +45,12 @@ function switchTheme() {
   </header>
 
   <main class="wrapper">
-    <button class="btn-create-task">Создать задачу</button>
+    <button @click="showModal = true" class="btn-create-task">Создать задачу</button>
+
+    <Teleport to="body">
+      <ModalItemCreate :show="showModal" @close="showModal = false" />
+    </Teleport>
+
     <div class="board">
       <Column
         v-for="column in kanban"
@@ -118,7 +127,7 @@ function switchTheme() {
 }
 
 .btn-create-task:hover {
-  filter: brightness(150%);
+  filter: brightness(120%);
 /*  background-color: var(--color-btn-green);*/
 }
 
