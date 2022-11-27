@@ -31,12 +31,16 @@ const isLastColumn = computed(() => {
   return (props.item.column.index === kanban.length - 1)
 })
 
+function moveLeft() {
+  API.moveItem(props.item, props.item.column, props.item.column.index - 1)
+}
+
 function moveRight() {
   API.moveItem(props.item, props.item.column, props.item.column.index + 1)
 }
 
-function moveLeft() {
-  API.moveItem(props.item, props.item.column, props.item.column.index - 1)
+function archive() {
+  API.moveItem(props.item, props.item.column, null)
 }
 
 </script>
@@ -58,18 +62,24 @@ function moveLeft() {
         <div class="item-buttons">
           <button
             @click="moveLeft"
-            :disabled="isButtonLeftDisabled">
+            :disabled="isButtonLeftDisabled"
+            title="Move to the left">
             <i class="icon"><IconLeftArrow /></i>
           </button>
 
-          <button>
+          <button title="Edit">
             <i class="icon"><IconEdit /></i>
           </button>
 
-          <button @click="moveRight">
+          <button v-if="isLastColumn" @click="moveRight" title="Archive">
             <i class="icon">
-              <IconArchive v-if="isLastColumn" />
-              <IconRightArrow v-else />
+              <IconArchive />
+            </i>
+          </button>
+
+          <button v-else @click="moveRight" title="Move to the right">
+            <i class="icon">
+              <IconRightArrow />
             </i>
           </button>
         </div>
@@ -161,8 +171,10 @@ function moveLeft() {
   cursor: default;
 }
 
+/* TODO doesn't look good on bright theme :( */
 .item-buttons > button:enabled:hover {
-  filter: brightness(120%);
+/*  filter: brightness(120%);*/
+  filter: brightness(var(--btn-hover-brightness));
 }
 
 .icon {
