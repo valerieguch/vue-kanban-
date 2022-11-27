@@ -147,6 +147,8 @@ const showModal = ref(false)
 /* TODO make scorllable */
 .board {
   padding: 2rem;
+  min-height: 40rem;
+
   display: grid;
   align-items: center;
   grid-auto-flow: column;
