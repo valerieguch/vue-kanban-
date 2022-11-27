@@ -1,17 +1,31 @@
 <script setup>
 import ColumnItem from './ColumnItem.vue'
-defineProps({
+
+import { API } from '../store.js'
+
+const props = defineProps({
   column: {
     type: Object,
     required: true
   }
 })
+
+
+// Item drop event
+function onDrop(event) {
+  // const uuid = event.dataTransfer.getData('itemUUID')
+  const item = API.getDraggedItem()
+  if (item.column !== props.column) {
+    API.moveItem(item, item.column, props.column)
+  }
+  API.stopDrag()
+}
 </script>
 
 <template>
   <!-- <div class="wrapper"> -->
     <!-- TODO make column constant height, items should be scrollable -->
-    <div class="column">
+    <div class="column" @drop="onDrop($event)" @dragover.prevent @dragenter.prevent>
       <h2 class="column-header">{{ column.name }} ({{ column.items.length }})</h2>
 
       <ul class="items">

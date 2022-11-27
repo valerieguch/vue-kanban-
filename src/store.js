@@ -48,6 +48,9 @@ export const kanban = reactive([
 // Archived items
 export const archived = reactive([])
 
+// Item that's being dragged
+let dragCache = null
+
 // TODO it's currently assumed that columns can't be moved, created or deleted
 
 export const API = {
@@ -87,6 +90,18 @@ export const API = {
 			console.log(archived)
 		}
 	},
+
+	startDrag(item) {
+		dragCache = item
+	},
+
+	stopDrag() {
+		dragCache = null
+	},
+
+	getDraggedItem() {
+		return dragCache
+	}
 }
 
 let lorem = "Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Distinctio, laboriosam non ipsa ut corporis id hic ad amet eius blanditiis tempore ipsam repellat consectetur vero necessitatibus dolor aperiam error. Beatae."

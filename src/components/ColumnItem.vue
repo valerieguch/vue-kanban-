@@ -45,16 +45,23 @@ function archive() {
   API.moveItem(props.item, props.item.column, null)
 }
 
-const showModal = ref(false)
+const showModal = ref(false) // Edit modal
+
+// The drop function is defined in `Column.vue`
+function onDragStart(event, item) {
+  // event.dataTransfer.dropEffect = 'move'
+  // event.dataTransfer.effectAllowed = 'move'
+  // event.dataTransfer.setData('itemUUID', item.uuid)
+  API.startDrag(item)
+}
 </script>
 
 <template>
   <Teleport to="body">
     <ModalItemEdit :show="showModal" :item="props.item" @close="showModal = false" />
   </Teleport>
-
   <!-- <div class="wrapper"> -->
-    <li class="item">
+    <li class="item" draggable="true" @dragstart="onDragStart($event, props.item)">
       <div class="item-header">
         <h3>{{ item.name }}</h3>
         <div class="priority-badge" :class="badgeColorClass">{{ item.priority }}</div>
@@ -104,6 +111,8 @@ const showModal = ref(false)
   background-color: var(--color-background-soft);
   border: 1px solid  var(--color-border);
   border-radius: 0.25rem;
+
+  cursor: default;
 }
 
 .item-header {
