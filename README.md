@@ -6,19 +6,19 @@
   <img src="Kanban-screenshot.png" width="900">
 </p>
 
-## Project Setup
+## Установка зависимостей
 
 ```sh
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+### Локальный сервер для разработки
 
 ```sh
 pnpm dev
 ```
 
-### Compile and Minify for Production
+### Компиляция
 
 ```sh
 pnpm build
