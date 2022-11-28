@@ -106,13 +106,13 @@ export const API = {
 
 let lorem = "Lorem ipsum, dolor, sit amet consectetur adipisicing elit. Distinctio, laboriosam non ipsa ut corporis id hic ad amet eius blanditiis tempore ipsam repellat consectetur vero necessitatibus dolor aperiam error. Beatae."
 
-API.addItem("Сделать курсач", "Добавим описание рас два три четыре", kanban[0], 1)
-API.addItem("Анжуманя", lorem, kanban[0], 2)
+API.addItem("Сходить в библиотеку", "Все прочитанные книги пора отнесни в библиотеку.", kanban[0], 2)
+API.addItem("Сверстать сайт", lorem, kanban[0], 2)
 // API.addItem("Пресс качат рас", "Добавим описание рас два три четыре", kanban[0], 3)
 // API.addItem("Пресс качат два", "Добавим описание рас два три четыре", kanban[0], 3)
 // API.addItem("Пресс качат три", "Добавим описание рас два три четыре", kanban[0], 3)
 // API.addItem("Пресс качат четыре", "Добавим описание рас два три четыре", kanban[0], 3)
 // API.addItem("Пресс качат пять", "Добавим описание рас два три четыре", kanban[0], 3)
-API.addItem("Книжки читат", "Добавим описание рас два три четыре", kanban[1], 1)
-API.addItem("В магазин ходит", "Добавим описание рас два три четыре", kanban[1], 1)
-API.addItem("Я сделяль", "Добавим описание рас два три четыре", kanban[2], 3)
+API.addItem("Написать резюме", "Можно воспользоваться платформой для составления резюме или использовать готовый дизайн.", kanban[1], 1)
+API.addItem("Очистить место на диске", "Удалить все ненужные файлы.", kanban[1], 3)
+API.addItem("Написать курсач", "Выполнить курсовую работу - канбан-доску на Vue.", kanban[2], 1)
