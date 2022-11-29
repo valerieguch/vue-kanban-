@@ -20,7 +20,6 @@ function switchTheme() {
         <IconEcosystem />
       </a>
 
-      <!-- TODO make centered, probably using grid -->
       <h1 class="header-app-name">Канбан</h1>
 
       <div class="theme-switch-wrapper">
@@ -32,8 +31,6 @@ function switchTheme() {
           id="switch"
           class="theme-switch">
       </div>
-
-      <!-- <button @click="switchTheme">Switch theme</button> -->
     </div>
   </header>
 </template>

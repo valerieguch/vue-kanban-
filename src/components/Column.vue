@@ -23,19 +23,17 @@ function onDrop(event) {
 </script>
 
 <template>
-  <!-- <div class="wrapper"> -->
-    <!-- TODO make column constant height, items should be scrollable -->
-    <div class="column" @drop="onDrop($event)" @dragover.prevent @dragenter.prevent>
-      <h2 class="column-header">{{ column.name }} ({{ column.items.length }})</h2>
+  <div class="column" @drop="onDrop($event)" @dragover.prevent @dragenter.prevent>
+    <h2 class="column-header">{{ column.name }} ({{ column.items.length }})</h2>
 
-      <ul class="items">
-        <ColumnItem
-          v-for="item in column.items"
-          :item="item"
-          :key="item.uuid" />
-      </ul>
-    </div>
-  <!-- </div> -->
+    <!-- TODO items should be scrollable. At the moment the column just grows to fit all of them. -->
+    <ul class="items">
+      <ColumnItem
+        v-for="item in column.items"
+        :item="item"
+        :key="item.uuid" />
+    </ul>
+  </div>
 </template>
 
 

@@ -44,13 +44,6 @@ const showModal = ref(false)
   <!-- TODO this is a hack to make footer stick to the bottom. Not elegant at all. -->
   <div class="spacer"></div>
 
-    <!-- <p>Columns</p>
-    <ul v-for="column in kanban">
-      <p>{{ column.name }}:</p>
-      <li v-for="item in column.items">
-        {{ item.name }}, priority: {{ item.priority }}
-      </li>
-    </ul> -->
   <footer class="footer">
     <div class="footer-wrapper">Валерия Гучустян, 191-322</div>
   </footer>
@@ -66,9 +59,7 @@ const showModal = ref(false)
 }
 
 .btn-create-task {
-  /* TODO ugly */
   margin: 3rem 2rem 0rem 2rem;
-/*  width: 9rem;*/
   height: 2.3rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -86,10 +77,8 @@ const showModal = ref(false)
 
 .btn-create-task:hover {
   filter: brightness(120%);
-/*  background-color: var(--color-btn-green);*/
 }
 
-/* TODO make scorllable */
 .board {
   padding: 2rem;
   min-height: 40rem;

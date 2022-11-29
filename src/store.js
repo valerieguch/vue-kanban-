@@ -6,9 +6,8 @@ function uuidv4() {
 	);
 }
 
-// TODO storing indices is... weird? But I haven't found another easy way to get
-// element index without O(n).
-
+// TODO storing indices is... weird? As far as I know, you can't get item's
+// index without writing ugly code and shooting yourself in the foot with O(n).
 export const kanban = reactive([
 	{
 		name:  "План",
@@ -48,11 +47,10 @@ export const kanban = reactive([
 // Archived items
 export const archived = reactive([])
 
-// Item that's being dragged
-let dragCache = null
+// Item that's being dragged right now
+let draggedItem = null
 
 // TODO it's currently assumed that columns can't be moved, created or deleted
-
 export const API = {
 	// name, desc: String, column: Object
 	addItem(name, desc, column, priority=1) {
@@ -60,11 +58,9 @@ export const API = {
 		const newItem = {
 			name      : name,
 			desc      : desc,
-			column    : column, // TODO do I really need to know the column?
-			// TODO store next column index or object reference?
+			column    : column,
 			priority  : priority,
 			createdAt : new Date().toLocaleString(),
-			// index     : column.items.length,
 			uuid      : uuidv4()
 		}
 
@@ -72,7 +68,9 @@ export const API = {
 	},
 
 	// Move from one column to another. If `toColumn` is null or greater than
-	// `kanban.length - 1`, then remove item
+	// `kanban.length - 1`, then remove the item.
+	// Yes, `toColumn` and `fromColumn` can be an objects or indices.
+	// It's probably bad.
 	moveItem(item, fromColumn, toColumn) {
 		if (typeof(fromColumn) === 'number')
 			fromColumn = kanban[fromColumn]
@@ -87,20 +85,19 @@ export const API = {
 		else {
 			archived.push(item)
 			item.column = null
-			console.log(archived)
 		}
 	},
 
 	startDrag(item) {
-		dragCache = item
+		draggedItem = item
 	},
 
 	stopDrag() {
-		dragCache = null
+		draggedItem = null
 	},
 
 	getDraggedItem() {
-		return dragCache
+		return draggedItem
 	}
 }
 

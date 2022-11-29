@@ -60,46 +60,45 @@ function onDragStart(event, item) {
   <Teleport to="body">
     <ModalItemEdit :show="showModal" :item="props.item" @close="showModal = false" />
   </Teleport>
-  <!-- <div class="wrapper"> -->
-    <li class="item" draggable="true" @dragstart="onDragStart($event, props.item)">
-      <div class="item-header">
-        <h3>{{ item.name }}</h3>
-        <div class="priority-badge" :class="badgeColorClass">{{ item.priority }}</div>
+
+  <li class="item" draggable="true" @dragstart="onDragStart($event, props.item)">
+    <div class="item-header">
+      <h3>{{ item.name }}</h3>
+      <div class="priority-badge" :class="badgeColorClass">{{ item.priority }}</div>
+    </div>
+
+    <div class="item-body">
+      <p v-if="item.desc" class="item-desc">{{ item.desc }}</p>
+      <i v-else class="item-desc text-muted" style="display: block" >без описания</i>
+
+      <i style="padding-bottom: 1rem; display: block;">{{ item.createdAt }}</i>
+
+      <div class="item-buttons">
+        <button
+          @click="moveLeft"
+          :disabled="isButtonLeftDisabled"
+          title="Move to the left">
+          <i class="icon"><IconLeftArrow /></i>
+        </button>
+
+        <button title="Edit" @click="showModal = true">
+          <i class="icon"><IconEdit /></i>
+        </button>
+
+        <button v-if="isLastColumn" @click="moveRight" title="Archive">
+          <i class="icon">
+            <IconArchive />
+          </i>
+        </button>
+
+        <button v-else @click="moveRight" title="Move to the right">
+          <i class="icon">
+            <IconRightArrow />
+          </i>
+        </button>
       </div>
-
-      <div class="item-body">
-        <p v-if="item.desc" class="item-desc">{{ item.desc }}</p>
-        <i v-else class="item-desc text-muted" style="display: block" >без описания</i>
-
-        <i style="padding-bottom: 1rem; display: block;">{{ item.createdAt }}</i>
-
-        <div class="item-buttons">
-          <button
-            @click="moveLeft"
-            :disabled="isButtonLeftDisabled"
-            title="Move to the left">
-            <i class="icon"><IconLeftArrow /></i>
-          </button>
-
-          <button title="Edit" @click="showModal = true">
-            <i class="icon"><IconEdit /></i>
-          </button>
-
-          <button v-if="isLastColumn" @click="moveRight" title="Archive">
-            <i class="icon">
-              <IconArchive />
-            </i>
-          </button>
-
-          <button v-else @click="moveRight" title="Move to the right">
-            <i class="icon">
-              <IconRightArrow />
-            </i>
-          </button>
-        </div>
-      </div>
-    </li>
-  <!-- </div> -->
+    </div>
+  </li>
 </template>
 
 

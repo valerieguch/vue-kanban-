@@ -190,7 +190,6 @@ select {
 }
 
 .btn {
-  /* TODO ugly */
 /*  margin: 3rem 2rem 0rem 2rem;*/
 /*  width: 9rem;*/
   height: 2.3rem;

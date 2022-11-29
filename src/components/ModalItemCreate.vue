@@ -45,10 +45,7 @@ function createItem() {
 
             <div class="field-wrapper">
               <label for="item-desc" class="label">Описание</label>
-              <!-- <input
-                id="item-desc"
-                type="text"
-                class="input text-area"> -->
+
               <textarea
                 v-model="itemDesc"
                 id="item-desc"
@@ -221,7 +218,6 @@ select {
 }
 
 .btn {
-  /* TODO ugly */
 /*  margin: 3rem 2rem 0rem 2rem;*/
 /*  width: 9rem;*/
   height: 2.3rem;
