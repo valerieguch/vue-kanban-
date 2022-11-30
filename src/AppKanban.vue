@@ -11,7 +11,7 @@ const showModal = ref(false)
 
 
 <template>
-  <Header />
+  <Header></Header>
 
   <main class="main-wrapper">
     <button @click="showModal = true" class="btn-create-task">Создать задачу</button>
@@ -28,7 +28,8 @@ const showModal = ref(false)
     </div>
 
     <div style="padding-bottom: 1rem;">
-      <h3>Archive:</h3>
+      <h3>Архив:</h3>
+
       <i v-if="archived.length === 0">Empty</i>
       <ul v-else v-for="item in archived" :key="item.uuid">
         <li>{{ item.name }}</li>
