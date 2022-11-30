@@ -13,7 +13,7 @@ const itemDesc = ref("")
 const columnIndex = ref(0)
 const itemPriority = ref(3)
 
-const formIncomplete = computed(() => {
+const isFormIncomplete = computed(() => {
   return (!itemName.value || !itemDesc.value)
 })
 
@@ -21,6 +21,7 @@ function createItem() {
   API.addItem(itemName.value, itemDesc.value, kanban[columnIndex.value], parseInt(itemPriority.value))
   itemName.value = ""
   itemDesc.value = ""
+  itemPriority.value = 3
 }
 </script>
 
@@ -94,7 +95,7 @@ function createItem() {
             <button
               class="btn"
               @click="createItem(); $emit('close')"
-              :disabled="formIncomplete"
+              :disabled="isFormIncomplete"
             >Создать</button>
           </div>
         </div>
