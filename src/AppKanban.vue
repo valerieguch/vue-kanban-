@@ -6,11 +6,6 @@ import ModalItemCreate from './components/ModalItemCreate.vue'
 import { ref } from 'vue'
 import { kanban, archived } from './store.js'
 
-function switchTheme() {
-  isDarkTheme = !isDarkTheme
-  document.querySelector('body').classList.toggle('dark');
-}
-
 const showModal = ref(false)
 </script>
 
